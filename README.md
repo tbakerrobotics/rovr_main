@@ -12,6 +12,6 @@
 8. Add more characters  
 
 
-MIGRATE TO ANDORID  
+MIGRATE TO ANDORID
 1. Add UI functionality (look at test project)  
 2. Work out save files and how they work on android  
