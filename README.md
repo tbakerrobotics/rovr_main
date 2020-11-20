@@ -2,7 +2,7 @@
  
 # Tasks :
 
-1. Toggle Ready
+~~1. Toggle Ready~~
 2. Fix Character Textures
 3. Vivox Basic Audio (migrate from vivox coms basic)
 4. Update with positional
