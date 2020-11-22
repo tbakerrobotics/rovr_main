@@ -2,8 +2,11 @@
  
 # Tasks :
 
-~~1. Toggle Ready~~  
-2. Fix Character Textures  
+Monday - 
+
+Sort player spawn into game issue
+Game settings accept and back buttons
+
 3. Vivox Basic Audio (migrate from vivox coms basic)  
 4. Update with positional  
 5. Add UI elements for host to select between positional and non positional  
