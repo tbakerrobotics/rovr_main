@@ -2,14 +2,9 @@
  
 # Tasks :
 
-Monday - 
-
-Sort player spawn into game issue
-Game settings accept and back buttons
-
 - Add in-game menu
   - Client menu has leave session
-  - Server menu has end session and switch map
+  - Server menu has return to lobby session and switch map
 - Vivox Basic Audio (migrate from vivox coms basic)  
 - Update with positional  
 - Add UI elements for host to select between positional and non positional  
