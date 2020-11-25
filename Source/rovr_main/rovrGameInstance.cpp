@@ -156,17 +156,12 @@ void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForw
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
 
-	if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Update 3D Position"));
-	}
-
 	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
 
 	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, ChannelType::Positional);
 
 	// Send new position and orientation to current positional channel
 	MyLoginSession.GetChannelSession(Channel).Set3DPosition(ActorLocation, ActorLocation, ActorForwardVector, ActorUpVector);
-
 }
 
 

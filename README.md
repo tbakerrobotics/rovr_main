@@ -12,13 +12,10 @@ Re-open Unreal
 - Add in-game menu
   - Client menu has leave session
   - Server menu has return to lobby session and switch map
-- Vivox Basic Audio (migrate from vivox coms basic)  
-- Update with positional  
+- Latency of positional audio
 - Add UI elements for host to select between positional and non positional  
-- Remove Steam and intergrate standard online sub systems (user specificying a sepecifc IP address)  
+- Remove Steam and integrate standard online sub systems (user specifying a specific IP address)  
 - Improve UI  
-- Add more characters  
-- Add name above players head
 - Allow users to upload own images
 
 
