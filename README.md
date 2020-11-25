@@ -1,4 +1,11 @@
 # rovr_main
+
+
+Try opening the Visual Studio solution and building the project from there. If that doesn’t work try clearing the derived files like this…
+Close Unreal and Visual Studio
+Delete the following folders: Binaries, Build, Intermediate, Saved
+Delete the Visual Studio or Xcode solution file (.sln or .xcodeproj)
+Re-open Unreal
  
 # Tasks :
 
