@@ -139,7 +139,7 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelNa
 #endif
 }
 
-void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector)
+void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector, FString channelName)
 {
 	float PositionalUpdateRate = 0.2f; // Send position and orientation update every 0.2 seconds. 
 	static float NextUpdateTime = UGameplayStatics::GetRealTimeSeconds(GetWorld()) + PositionalUpdateRate;
@@ -147,16 +147,28 @@ void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector Acto
 	if (UGameplayStatics::GetRealTimeSeconds(GetWorld()) > NextUpdateTime)
 	{
 		NextUpdateTime += PositionalUpdateRate;
-		Update3DPosition(ActorLocation, ActorForwardVector, ActorUpVector);
+		Update3DPosition(ActorLocation, ActorForwardVector, ActorUpVector,channelName);
 	}
 }
 
-void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForwardVector, FVector ActorUpVector) 
+void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForwardVector, FVector ActorUpVector,FString channelName)
 {
+	IClient &MyVoiceClient(vModule->VoiceClient());
+	MyVoiceClient.Initialize();
+
 	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Update 3D Position"));
 	}
+
+	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
+
+	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, ChannelType::Positional);
+
+	// Send new position and orientation to current positional channel
+	MyLoginSession.GetChannelSession(Channel).Set3DPosition(ActorLocation, ActorLocation, ActorForwardVector, ActorUpVector);
+
 }
+
 
 /*
 Past this point these functions are currently unused, but worth keep for future use.
