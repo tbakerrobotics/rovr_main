@@ -14,15 +14,14 @@
 void UrovrGameInstance::Init()
 {
 	Super::Init();
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Game Instance Init"));
-
 	vModule = static_cast<FVivoxCoreModule *>(&FModuleManager::Get().LoadModuleChecked(TEXT("VivoxCore")));
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("VivoxCore - Initalised"));
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox"));
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
 
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
@@ -51,12 +50,23 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 	MyLoginSession.BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
 }
 
-void UrovrGameInstance::JoinVoiceWithPermission() {
+void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio) {
 
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
 
-	ChannelId Channel(VIVOX_VOICE_ISSUER, "example_channel", VIVOX_VOICE_DOMAIN, ChannelType::NonPositional);
+	ChannelType rovrSessionType;
+
+	if (positionalAudio) {
+		//Positional Audio
+		rovrSessionType = ChannelType::Positional;
+	}
+	else {
+		//Use Direct Audio
+		rovrSessionType = ChannelType::NonPositional;
+	}
+
+	ChannelId Channel(VIVOX_VOICE_ISSUER, "example_channel", VIVOX_VOICE_DOMAIN, rovrSessionType);
 
 	ILoginSession &VoiceLoginSession(MyVoiceClient.GetLoginSession(Account));
 
@@ -84,7 +94,7 @@ void UrovrGameInstance::JoinVoiceWithPermission() {
 }
 
 
-void UrovrGameInstance::JoinVoiceChannel()
+void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio)
 {
 #if PLATFORM_ANDROID
 	if (!UAndroidPermissionFunctionLibrary::CheckPermission(TEXT("android.permission.RECORD_AUDIO")))
@@ -106,7 +116,7 @@ void UrovrGameInstance::JoinVoiceChannel()
 							// We got RECORD_AUDIO permission, now we can use the mic
 							if (GEngine)
 								GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:We got RECORD_AUDIO permission, now we can use the mic - Calling Join"));
-							JoinVoiceWithPermission();
+							JoinVoiceWithPermission(positionalAudio);
 						}
 					}
 				});
@@ -117,18 +127,20 @@ void UrovrGameInstance::JoinVoiceChannel()
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
-		JoinVoiceWithPermission();
+		JoinVoiceWithPermission(positionalAudio);
 	}
 #else 
 	// Not Android
 	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("PC:Calling Join"));
 	}
-	JoinVoiceWithPermission();
+	JoinVoiceWithPermission(positionalAudio);
 #endif
 }
 
-
+/*
+Past this point these functions are currently unused, but worth keep for future use.
+*/
 void UrovrGameInstance::sendTextMessage()
 {
 	IClient &MyVoiceClient(vModule->VoiceClient());

@@ -18,3 +18,10 @@
 MIGRATE TO ANDROID
 1. Add UI functionality (look at test project)  
 2. Work out save files and how they work on android  
+
+
+Possible UI Packages:
+
+https://www.unrealengine.com/marketplace/en-US/product/simple-ui-design-widget-umg
+https://www.unrealengine.com/marketplace/en-US/product/cleanui-simple-ui-buttons
+https://www.unrealengine.com/marketplace/en-US/product/procedural-ui-background-and-borders-umg-material-kit
