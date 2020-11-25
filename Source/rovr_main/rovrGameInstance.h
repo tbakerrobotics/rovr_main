@@ -27,7 +27,7 @@ public:
 
 public:
 	UFUNCTION(BlueprintCallable)
-		void JoinVoiceChannel(bool positionalAudio);
+		void JoinVoiceChannel(bool positionalAudio,FString channelName);
 
 	UFUNCTION(BlueprintCallable)
 		void sendTextMessage();
@@ -35,5 +35,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void initaliseVivox(FString name);
 
-	void JoinVoiceWithPermission(bool positionalAudio);
+	UFUNCTION(BlueprintCallable)
+		void positionalTickUpdate(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector);
+
+	UFUNCTION(BlueprintCallable)
+		void Update3DPosition(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector);
+
+	void JoinVoiceWithPermission(bool positionalAudio,FString channelName);
 };

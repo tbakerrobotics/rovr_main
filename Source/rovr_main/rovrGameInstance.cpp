@@ -5,6 +5,7 @@
 #include "VivoxToken.h"
 #include "AndroidPermissionFunctionLibrary.h"
 #include "AndroidPermissionCallbackProxy.h"
+#include "Kismet/GameplayStatics.h"
 
 #define VIVOX_VOICE_SERVER TEXT("https://mt1s.www.vivox.com/api2")
 #define VIVOX_VOICE_DOMAIN TEXT("mt1s.vivox.com")
@@ -50,7 +51,7 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 	MyLoginSession.BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
 }
 
-void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio) {
+void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName) {
 
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
@@ -66,7 +67,7 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio) {
 		rovrSessionType = ChannelType::NonPositional;
 	}
 
-	ChannelId Channel(VIVOX_VOICE_ISSUER, "example_channel", VIVOX_VOICE_DOMAIN, rovrSessionType);
+	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
 
 	ILoginSession &VoiceLoginSession(MyVoiceClient.GetLoginSession(Account));
 
@@ -94,7 +95,7 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio) {
 }
 
 
-void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio)
+void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelName)
 {
 #if PLATFORM_ANDROID
 	if (!UAndroidPermissionFunctionLibrary::CheckPermission(TEXT("android.permission.RECORD_AUDIO")))
@@ -116,7 +117,7 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio)
 							// We got RECORD_AUDIO permission, now we can use the mic
 							if (GEngine)
 								GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:We got RECORD_AUDIO permission, now we can use the mic - Calling Join"));
-							JoinVoiceWithPermission(positionalAudio);
+							JoinVoiceWithPermission(positionalAudio, channelName);
 						}
 					}
 				});
@@ -127,15 +128,34 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio)
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
-		JoinVoiceWithPermission(positionalAudio);
+		JoinVoiceWithPermission(positionalAudio, channelName);
 	}
 #else 
 	// Not Android
 	if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("PC:Calling Join"));
 	}
-	JoinVoiceWithPermission(positionalAudio);
+	JoinVoiceWithPermission(positionalAudio, channelName);
 #endif
+}
+
+void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector)
+{
+	float PositionalUpdateRate = 0.2f; // Send position and orientation update every 0.2 seconds. 
+	static float NextUpdateTime = UGameplayStatics::GetRealTimeSeconds(GetWorld()) + PositionalUpdateRate;
+
+	if (UGameplayStatics::GetRealTimeSeconds(GetWorld()) > NextUpdateTime)
+	{
+		NextUpdateTime += PositionalUpdateRate;
+		Update3DPosition(ActorLocation, ActorForwardVector, ActorUpVector);
+	}
+}
+
+void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForwardVector, FVector ActorUpVector) 
+{
+	if (GEngine) {
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Update 3D Position"));
+	}
 }
 
 /*
