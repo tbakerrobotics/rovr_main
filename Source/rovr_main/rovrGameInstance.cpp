@@ -148,6 +148,9 @@ void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector Acto
 	{
 		NextUpdateTime += PositionalUpdateRate;
 		Update3DPosition(ActorLocation, ActorForwardVector, ActorUpVector,channelName);
+		if (GEngine) {
+			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Yellow, TEXT("Positional Audio Updat"));
+		}
 	}
 }
 
