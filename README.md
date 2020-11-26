@@ -1,31 +1,33 @@
-# rovr_main
+## ROVR Social VR Platform
 
-Steps to resolving build errors (moving from PC's)
+This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. 
 
-Remove the vivox plugin,and re add with fresh download. 
-Delete the following folders: Binaries, Build, Intermediate, Saved
-Delete the Visual Studio or Xcode solution file (.sln or .xcodeproj)
-Re-open Unreal
- 
-# Tasks :
+If you experience build errors, follow the steps below:
 
+1.Delete the following folders: Binaries, Build, Intermediate, Saved
+
+2.Delete the Visual Studio or Xcode solution file (.sln or .xcodeproj)
+
+3.Right click on the uproject file and click 'Generate Visual Studio Files'
+
+4.Open the sln file and build the c++ project.
+
+3.Re-open Unreal
+
+# Tasks to complete:
 - Add in-game menu
   - Client menu has leave session
-  - Server menu has return to lobby session and switch map
-- Latency of positional audio
-- Add UI elements for host to select between positional and non positional  
+  - Server menu has return to lobby session and switch ma
+- Latency of positional audio - improve with c++ scrip
+- Look at initalsiing of vivox object
+- Move vivox tokens over to production ready solution
 - Remove Steam and integrate standard online sub systems (user specifying a specific IP address)  
-- Improve UI  
+- UI replace/improve  
 - Allow users to upload own images
 
+# Once complete:
 
 MIGRATE TO ANDROID
-1. Add UI functionality (look at test project)  
+1. Add UI functionality (look at test project)
+2. Ensure settings are correct for android (scalebale quality etc)
 2. Work out save files and how they work on android  
-
-
-Possible UI Packages:
-
-https://www.unrealengine.com/marketplace/en-US/product/simple-ui-design-widget-umg
-https://www.unrealengine.com/marketplace/en-US/product/cleanui-simple-ui-buttons
-https://www.unrealengine.com/marketplace/en-US/product/procedural-ui-background-and-borders-umg-material-kit
