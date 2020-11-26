@@ -173,6 +173,7 @@ void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForw
 void UrovrGameInstance::LeaveVivoxChannel() {
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
+
 	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
 	MyLoginSession.Logout();
 }
