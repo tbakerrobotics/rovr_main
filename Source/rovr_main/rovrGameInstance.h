@@ -42,4 +42,7 @@ public:
 		void Update3DPosition(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector, FString channelName);
 
 	void JoinVoiceWithPermission(bool positionalAudio,FString channelName);
+
+	UFUNCTION(BlueprintCallable)
+		void LeaveVivoxChannel();
 };
