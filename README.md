@@ -5,9 +5,13 @@ This repository does not include the Vivox Plugin requried for audio communicati
 If you experience build errors, follow the steps below:
 
 1.Delete the following folders: Binaries, Build, Intermediate, Saved
+
 2.Delete the Visual Studio or Xcode solution file (.sln or .xcodeproj)
+
 3.Right click on the uproject file and click 'Generate Visual Studio Files'
+
 4.Open the sln file and build the c++ project.
+
 3.Re-open Unreal
 
 # Tasks to complete:
