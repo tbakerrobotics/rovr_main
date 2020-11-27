@@ -22,32 +22,6 @@ void UrovrGameInstance::Init()
 
 void UrovrGameInstance::initaliseVivox(FString name) {
 
-	/*
-	IClient &MyVoiceClient(vModule->VoiceClient());
-	MyVoiceClient.Initialize();
-
-	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
-
-	FString LoginToken;
-	FVivoxToken::GenerateClientLoginToken(MyLoginSession, LoginToken);
-
-	bool IsLoggedIn = false;
-
-	ILoginSession::FOnBeginLoginCompletedDelegate OnBeginLoginCompleted;
-	OnBeginLoginCompleted.BindLambda([this, &IsLoggedIn](VivoxCoreError Error)
-		{
-			if (VxErrorSuccess == Error)
-			{
-				IsLoggedIn = true;
-				// This bool is only illustrative. The user is now logged in.
-				if (GEngine)
-					GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Logged In - Bind Event"));
-			}
-		});
-	// Request the user to login to Vivox
-	MyLoginSession.BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
-	*/
-
 	if (GEngine)
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
 
@@ -89,16 +63,16 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 		rovrSessionType = ChannelType::NonPositional;
 	}
 
-	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+	Channel = ChannelId(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
 
-	IChannelSession &MyChannelSession(MyLoginSession->GetChannelSession(Channel));
+	MyChannelSession = &MyLoginSession->GetChannelSession(Channel);
 
 	bool IsAsynchronousConnectCompleted = false;
 
 	IChannelSession::FOnBeginConnectCompletedDelegate OnBeginConnectCompleted;
 
 	FString JoinToken;
-	FVivoxToken::GenerateClientJoinToken(MyChannelSession, JoinToken);
+	FVivoxToken::GenerateClientJoinToken(*MyChannelSession, JoinToken);
 
 	OnBeginConnectCompleted.BindLambda([this, &IsAsynchronousConnectCompleted](VivoxCoreError Error)
 		{
@@ -109,7 +83,7 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 			}
 		});
 
-	MyChannelSession.BeginConnect(true, true, true, JoinToken, OnBeginConnectCompleted);
+	MyChannelSession->BeginConnect(true, true, true, JoinToken, OnBeginConnectCompleted);
 
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Voice Channel Joined"));
@@ -174,23 +148,19 @@ void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector Acto
 
 void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForwardVector, FVector ActorUpVector,FString channelName)
 {
-	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, ChannelType::Positional);
-
 	// Send new position and orientation to current positional channel
 	MyLoginSession->GetChannelSession(Channel).Set3DPosition(ActorLocation, ActorLocation, ActorForwardVector, ActorUpVector);
-
-	/*
-		if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Yellow, TEXT("Positional Audio Update Position"));
-	}
-	*/
 }
 
-void UrovrGameInstance::LeaveVivoxChannel()
+void UrovrGameInstance::DestroyVivoxSession()
 {
 	MyLoginSession->Logout();
 }
 
+void UrovrGameInstance::RemoveFromVivoxChannel() 
+{
+	MyChannelSession->Disconnect();
+}
 
 /*
 Past this point these functions are currently unused, but worth keep for future use.
@@ -257,8 +227,10 @@ void UrovrGameInstance::OnChannelSessionConnectionStateChanged(const IChannelCon
 
 void UrovrGameInstance::OnChannelParticipantAdded(const IParticipant &Participant)
 {
+	/*	
 	ChannelId Channel = Participant.ParentChannelSession().Channel();
-	if (GEngine)
+		if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Participant Added - %s"), *Participant.Account().Name());
 	//UE_LOG(MyLog, Log, TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name());
+	*/
 }

@@ -24,8 +24,10 @@ private:
 
 public:
 	AccountId Account;
+	ChannelId Channel;
 	IClient *MyVoiceClient;
 	ILoginSession *MyLoginSession;
+	IChannelSession *MyChannelSession;
 
 public:
 	UFUNCTION(BlueprintCallable)
@@ -46,5 +48,8 @@ public:
 	void JoinVoiceWithPermission(bool positionalAudio,FString channelName);
 
 	UFUNCTION(BlueprintCallable)
-		void LeaveVivoxChannel();
+		void DestroyVivoxSession();
+
+	UFUNCTION(BlueprintCallable)
+		void RemoveFromVivoxChannel();
 };
