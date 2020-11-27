@@ -19,8 +19,7 @@ private:
 	FVivoxCoreModule* vModule;
 	void Init() override;
 	void OnLoginSessionStateChanged(LoginState State);
-	void OnChannelSessionConnectionStateChanged(const IChannelConnectionState &State);
-	void OnChannelParticipantAdded(const IParticipant &Participant);
+
 
 public:
 	AccountId Account;
@@ -32,9 +31,6 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 		void JoinVoiceChannel(bool positionalAudio,FString channelName);
-
-	UFUNCTION(BlueprintCallable)
-		void sendTextMessage();
 
 	UFUNCTION(BlueprintCallable)
 		void initaliseVivox(FString name);

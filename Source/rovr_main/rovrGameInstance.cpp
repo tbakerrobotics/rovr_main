@@ -155,45 +155,14 @@ void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForw
 void UrovrGameInstance::DestroyVivoxSession()
 {
 	MyLoginSession->Logout();
+	MyVoiceClient->Uninitialize();
 }
 
 void UrovrGameInstance::RemoveFromVivoxChannel() 
 {
 	MyChannelSession->Disconnect();
+	MyLoginSession->DeleteChannelSession(Channel);
 }
-
-/*
-Past this point these functions are currently unused, but worth keep for future use.
-*/
-void UrovrGameInstance::sendTextMessage()
-{/*
-	ChannelId Channel = ChannelId(VIVOX_VOICE_ISSUER, "example_channel", VIVOX_VOICE_DOMAIN);
-	FString Message = TEXT("Example channel message.");
-
-	IChannelSession::FOnBeginSendTextCompletedDelegate SendChannelMessageCallback;
-	SendChannelMessageCallback.BindLambda([this, Channel, Message](VivoxCoreError Error)
-		{
-			if (VxErrorSuccess == Error)
-			{
-				if (GEngine)
-					GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Message sent to %s:"), *Channel.Name());
-				//UE_LOG(MyLog, Log, TEXT("Message sent to %s: %s\n"), *Channel.Name(), *Message);
-			}
-		});
-
-	ILoginSession &VoiceLoginSession(MyVoiceClient.GetLoginSession(Account));
-	IChannelSession &MyChannelSession(VoiceLoginSession.GetChannelSession(Channel));
-	MyChannelSession.BeginSendText(Message, SendChannelMessageCallback);
- */
-}
-
-void OnChannelTextMessageReceived(const IChannelTextMessage &Message)
-{
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("%s:"), *Message.Message());
-	//UE_LOG(LogTemp, Log, TEXT("%s: %s\n"), *Message.Sender().Name(), *Message.Message());
-}
-
 
 void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
 {
@@ -207,30 +176,3 @@ void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
 	}
 }
 
-void UrovrGameInstance::OnChannelSessionConnectionStateChanged(const IChannelConnectionState &State)
-{
-	FString ChannelName(State.ChannelSession().Channel().Name());
-
-	if (ConnectionState::Connected == State.State())
-	{
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Channel Fully Connected"));
-		//UE_LOG(MyLog, Log, TEXT("Channel %s  fully connected\n"), *ChannelName);
-	}
-	else if (ConnectionState::Disconnected == State.State())
-	{
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Channel Fully disconnected"));
-		//UE_LOG(MyLog, Log, TEXT("Channel %s fully disconnected\n"), *ChannelName);
-	}
-}
-
-void UrovrGameInstance::OnChannelParticipantAdded(const IParticipant &Participant)
-{
-	/*	
-	ChannelId Channel = Participant.ParentChannelSession().Channel();
-		if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Participant Added - %s"), *Participant.Account().Name());
-	//UE_LOG(MyLog, Log, TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name());
-	*/
-}
