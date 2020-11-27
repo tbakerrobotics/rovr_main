@@ -24,6 +24,8 @@ private:
 
 public:
 	AccountId Account;
+	IClient *MyVoiceClient;
+	ILoginSession *MyLoginSession;
 
 public:
 	UFUNCTION(BlueprintCallable)

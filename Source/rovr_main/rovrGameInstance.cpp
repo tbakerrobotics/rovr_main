@@ -21,13 +21,10 @@ void UrovrGameInstance::Init()
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
 
+	/*
 	IClient &MyVoiceClient(vModule->VoiceClient());
 	MyVoiceClient.Initialize();
-
-	Account = AccountId(VIVOX_VOICE_ISSUER, name, VIVOX_VOICE_DOMAIN);
 
 	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
 
@@ -49,13 +46,38 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 		});
 	// Request the user to login to Vivox
 	MyLoginSession.BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
+	*/
+
+	if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
+
+	MyVoiceClient = &vModule->VoiceClient();
+	MyVoiceClient->Initialize();
+
+	Account = AccountId(VIVOX_VOICE_ISSUER, name, VIVOX_VOICE_DOMAIN);
+	MyLoginSession = &MyVoiceClient->GetLoginSession(Account);
+
+	FString LoginToken;
+	FVivoxToken::GenerateClientLoginToken(*MyLoginSession, LoginToken);
+
+	bool IsLoggedIn = false;
+
+	ILoginSession::FOnBeginLoginCompletedDelegate OnBeginLoginCompleted;
+	OnBeginLoginCompleted.BindLambda([this, &IsLoggedIn](VivoxCoreError Error)
+		{
+			if (VxErrorSuccess == Error)
+			{
+				IsLoggedIn = true;
+				// This bool is only illustrative. The user is now logged in.
+				if (GEngine)
+					GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Logged In - Bind Event"));
+			}
+		});
+	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
 }
 
-void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName) {
-
-	IClient &MyVoiceClient(vModule->VoiceClient());
-	MyVoiceClient.Initialize();
-
+void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
+{
 	ChannelType rovrSessionType;
 
 	if (positionalAudio) {
@@ -69,9 +91,8 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 
 	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
 
-	ILoginSession &VoiceLoginSession(MyVoiceClient.GetLoginSession(Account));
+	IChannelSession &MyChannelSession(MyLoginSession->GetChannelSession(Channel));
 
-	IChannelSession &MyChannelSession(VoiceLoginSession.GetChannelSession(Channel));
 	bool IsAsynchronousConnectCompleted = false;
 
 	IChannelSession::FOnBeginConnectCompletedDelegate OnBeginConnectCompleted;
@@ -97,7 +118,7 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 
 void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelName)
 {
-#if PLATFORM_ANDROID
+	#if PLATFORM_ANDROID
 	if (!UAndroidPermissionFunctionLibrary::CheckPermission(TEXT("android.permission.RECORD_AUDIO")))
 	{
 		// Build an array of permissions to request
@@ -153,15 +174,10 @@ void UrovrGameInstance::positionalTickUpdate(FVector ActorLocation, FVector Acto
 
 void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForwardVector, FVector ActorUpVector,FString channelName)
 {
-	IClient &MyVoiceClient(vModule->VoiceClient());
-	MyVoiceClient.Initialize();
-
-	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
-
 	ChannelId Channel(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, ChannelType::Positional);
 
 	// Send new position and orientation to current positional channel
-	MyLoginSession.GetChannelSession(Channel).Set3DPosition(ActorLocation, ActorLocation, ActorForwardVector, ActorUpVector);
+	MyLoginSession->GetChannelSession(Channel).Set3DPosition(ActorLocation, ActorLocation, ActorForwardVector, ActorUpVector);
 
 	/*
 		if (GEngine) {
@@ -170,12 +186,9 @@ void UrovrGameInstance::Update3DPosition(FVector ActorLocation,FVector ActorForw
 	*/
 }
 
-void UrovrGameInstance::LeaveVivoxChannel() {
-	IClient &MyVoiceClient(vModule->VoiceClient());
-	MyVoiceClient.Initialize();
-
-	ILoginSession &MyLoginSession(MyVoiceClient.GetLoginSession(Account));
-	MyLoginSession.Logout();
+void UrovrGameInstance::LeaveVivoxChannel()
+{
+	MyLoginSession->Logout();
 }
 
 
@@ -183,10 +196,7 @@ void UrovrGameInstance::LeaveVivoxChannel() {
 Past this point these functions are currently unused, but worth keep for future use.
 */
 void UrovrGameInstance::sendTextMessage()
-{
-	IClient &MyVoiceClient(vModule->VoiceClient());
-	MyVoiceClient.Initialize();
-
+{/*
 	ChannelId Channel = ChannelId(VIVOX_VOICE_ISSUER, "example_channel", VIVOX_VOICE_DOMAIN);
 	FString Message = TEXT("Example channel message.");
 
@@ -204,6 +214,7 @@ void UrovrGameInstance::sendTextMessage()
 	ILoginSession &VoiceLoginSession(MyVoiceClient.GetLoginSession(Account));
 	IChannelSession &MyChannelSession(VoiceLoginSession.GetChannelSession(Channel));
 	MyChannelSession.BeginSendText(Message, SendChannelMessageCallback);
+ */
 }
 
 void OnChannelTextMessageReceived(const IChannelTextMessage &Message)
