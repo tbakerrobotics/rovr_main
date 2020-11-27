@@ -18,8 +18,6 @@ If you experience build errors, follow the steps below:
 - Add in-game menu
   - Client menu has leave session
   - Server menu has return to lobby session and switch ma
-- Latency of positional audio - improve with c++ scrip
-- Look at initalsiing of vivox object
 - Move vivox tokens over to production ready solution
 - Remove Steam and integrate standard online sub systems (user specifying a specific IP address)  
 - UI replace/improve  
