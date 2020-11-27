@@ -83,7 +83,7 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 			}
 		});
 
-	MyChannelSession->BeginConnect(true, true, true, JoinToken, OnBeginConnectCompleted);
+	MyChannelSession->BeginConnect(true, false, true, JoinToken, OnBeginConnectCompleted);
 
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Voice Channel Joined"));
