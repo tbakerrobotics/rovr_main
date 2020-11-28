@@ -16,15 +16,17 @@ void UrovrGameInstance::Init()
 {
 	Super::Init();
 	vModule = static_cast<FVivoxCoreModule *>(&FModuleManager::Get().LoadModuleChecked(TEXT("VivoxCore")));
-	if (GEngine)
+	/*
+		if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("VivoxCore - Initalised"));
+	*/
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
-
-	if (GEngine)
+	/*
+		if (GEngine)
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
-
+	*/
 	MyVoiceClient = &vModule->VoiceClient();
 	MyVoiceClient->Initialize();
 
@@ -43,11 +45,14 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 			{
 				IsLoggedIn = true;
 				// This bool is only illustrative. The user is now logged in.
-				if (GEngine)
-					GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Logged In - Bind Event"));
+				/*
+					if (GEngine)
+						GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Logged In - Bind Event"));
+				*/
 			}
 		});
 	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
+	MyLoginSession->EventStateChanged;
 }
 
 void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
@@ -87,6 +92,9 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Voice Channel Joined"));
+
+	MyChannelSession->EventAfterParticipantAdded;
+
 }
 
 
@@ -127,9 +135,11 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelNa
 	}
 #else 
 	// Not Android
-	if (GEngine) {
+	/*
+		if (GEngine) {
 		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("PC:Calling Join"));
 	}
+	*/
 	JoinVoiceWithPermission(positionalAudio, channelName);
 #endif
 }
@@ -176,3 +186,31 @@ void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
 	}
 }
 
+void UrovrGameInstance::OnChannelSessionConnectionStateChanged(const IChannelConnectionState &State)
+{
+	FString ChannelName(State.ChannelSession().Channel().Name());
+
+	if (ConnectionState::Connected == State.State())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Channel %s  fully connected\n"), *ChannelName);
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Channel %s  fully connected\n"), *ChannelName));
+	}
+
+	else if (ConnectionState::Disconnected == State.State())
+	{
+		UE_LOG(LogTemp, Log, TEXT("Channel %s fully disconnected\n"), *ChannelName);
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Channel %s fully disconnected\n"), *ChannelName));
+	}
+}
+
+
+void UrovrGameInstance::OnChannelParticipantAdded(const IParticipant &Participant)
+{
+	UE_LOG(LogTemp, Log, TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name());
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name()));
+
+}
