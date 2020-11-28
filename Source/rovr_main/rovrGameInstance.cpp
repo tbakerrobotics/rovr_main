@@ -16,17 +16,9 @@ void UrovrGameInstance::Init()
 {
 	Super::Init();
 	vModule = static_cast<FVivoxCoreModule *>(&FModuleManager::Get().LoadModuleChecked(TEXT("VivoxCore")));
-	/*
-		if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("VivoxCore - Initalised"));
-	*/
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
-	/*
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Initialising Vivox Instance"));
-	*/
 	MyVoiceClient = &vModule->VoiceClient();
 	MyVoiceClient->Initialize();
 
@@ -41,18 +33,18 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 	ILoginSession::FOnBeginLoginCompletedDelegate OnBeginLoginCompleted;
 	OnBeginLoginCompleted.BindLambda([this, &IsLoggedIn](VivoxCoreError Error)
 		{
-			if (VxErrorSuccess == Error)
+			if (VxErrorSuccess != Error)
+			{
+				BindLoginSessionHandlers(false, *MyLoginSession); // Unbind handlers if we fail to log in
+			}
+			else 
 			{
 				IsLoggedIn = true;
 				// This bool is only illustrative. The user is now logged in.
-				/*
-					if (GEngine)
-						GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Logged In - Bind Event"));
-				*/
 			}
 		});
+	BindLoginSessionHandlers(true, *MyLoginSession);
 	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
-	MyLoginSession->EventStateChanged;
 }
 
 void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
@@ -81,22 +73,20 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 
 	OnBeginConnectCompleted.BindLambda([this, &IsAsynchronousConnectCompleted](VivoxCoreError Error)
 		{
-			if (VxErrorSuccess == Error)
+			if (VxErrorSuccess != Error)
 			{
+				BindChannelSessionHandlers(false, *MyChannelSession); // Unbind handlers if we fail to join.
+			}
+			else {
 				IsAsynchronousConnectCompleted = true;
 				// This bool is only illustrative. The connect call has completed.
 			}
 		});
 
+	BindChannelSessionHandlers(true, *MyChannelSession);
 	MyChannelSession->BeginConnect(true, false, true, JoinToken, OnBeginConnectCompleted);
 
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("Voice Channel Joined"));
-
-	MyChannelSession->EventAfterParticipantAdded;
-
 }
-
 
 void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelName)
 {
@@ -135,11 +125,6 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelNa
 	}
 #else 
 	// Not Android
-	/*
-		if (GEngine) {
-		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("PC:Calling Join"));
-	}
-	*/
 	JoinVoiceWithPermission(positionalAudio, channelName);
 #endif
 }
@@ -174,6 +159,37 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 	MyLoginSession->DeleteChannelSession(Channel);
 }
 
+
+void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& LoginSession) {
+	if (DoBind)
+	{
+		LoginSession.EventStateChanged.AddUObject(this, &UrovrGameInstance::OnLoginSessionStateChanged);
+	}
+	else
+	{
+		LoginSession.EventStateChanged.RemoveAll(this);
+	}
+}
+
+void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession& ChannelSession) {
+	if (DoBind)
+	{
+		ChannelSession.EventAfterParticipantAdded.AddUObject(this, &UrovrGameInstance::OnChannelParticipantAdded);
+		ChannelSession.EventBeforeParticipantRemoved.AddUObject(this, &UrovrGameInstance::OnChannelParticipantRemoved);
+		ChannelSession.EventAfterParticipantUpdated.AddUObject(this, &UrovrGameInstance::OnChannelParticipantUpdated);
+	}
+	else
+	{
+		ChannelSession.EventAfterParticipantAdded.RemoveAll(this);
+		ChannelSession.EventBeforeParticipantRemoved.RemoveAll(this);
+		ChannelSession.EventAfterParticipantUpdated.RemoveAll(this);
+		ChannelSession.EventAudioStateChanged.RemoveAll(this);
+		ChannelSession.EventTextStateChanged.RemoveAll(this);
+		ChannelSession.EventChannelStateChanged.RemoveAll(this);
+		ChannelSession.EventTextMessageReceived.RemoveAll(this);
+	}
+}
+
 void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
 {
 	if (LoginState::LoggedOut == State)
@@ -182,7 +198,6 @@ void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
 
 		if (GEngine)
 			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Red, TEXT("LoginSession Logged Out Unexpectedly"));
-		// Optionally handle other cases
 	}
 }
 
@@ -194,23 +209,40 @@ void UrovrGameInstance::OnChannelSessionConnectionStateChanged(const IChannelCon
 	{
 		UE_LOG(LogTemp, Log, TEXT("Channel %s  fully connected\n"), *ChannelName);
 		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Channel %s  fully connected\n"), *ChannelName));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Channel %s  fully connected\n"), *ChannelName));
 	}
 
 	else if (ConnectionState::Disconnected == State.State())
 	{
 		UE_LOG(LogTemp, Log, TEXT("Channel %s fully disconnected\n"), *ChannelName);
 		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Channel %s fully disconnected\n"), *ChannelName));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Channel %s fully disconnected\n"), *ChannelName));
 	}
 }
 
-
 void UrovrGameInstance::OnChannelParticipantAdded(const IParticipant &Participant)
 {
-	UE_LOG(LogTemp, Log, TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name());
+	ChannelId PatChannel = Participant.ParentChannelSession().Channel();
+	UE_LOG(LogTemp, Log, TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *PatChannel.Name());
 
 	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *Channel.Name()));
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s has been added to %s\n"), *Participant.Account().Name(), *PatChannel.Name()));
+}
 
+void UrovrGameInstance::OnChannelParticipantRemoved(const IParticipant &Participant)
+{
+	ChannelId PatChannel = Participant.ParentChannelSession().Channel();
+	UE_LOG(LogTemp, Log, TEXT("%s has been removed from %s\n"), *Participant.Account().Name(), *PatChannel.Name());
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s has been removed from %s\n"), *Participant.Account().Name(), *PatChannel.Name()));
+}
+
+void UrovrGameInstance::OnChannelParticipantUpdated(const IParticipant &Participant)
+{
+	ChannelId PatChannel = Participant.ParentChannelSession().Channel();
+	UE_LOG(LogTemp, Log, TEXT("%s has been updated in %s\n"), *Participant.Account().Name(), *Channel.Name());
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s has been updated in %s\n"), *Participant.Account().Name(), *PatChannel.Name()));
 }
