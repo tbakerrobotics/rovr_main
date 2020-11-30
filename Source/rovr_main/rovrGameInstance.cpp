@@ -161,7 +161,8 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 
 
 void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& LoginSession) {
-	if (DoBind)
+	/*
+		if (DoBind)
 	{
 		LoginSession.EventStateChanged.AddUObject(this, &UrovrGameInstance::OnLoginSessionStateChanged);
 	}
@@ -169,10 +170,13 @@ void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& Log
 	{
 		LoginSession.EventStateChanged.RemoveAll(this);
 	}
+	*/
+
 }
 
 void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession& ChannelSession) {
-	if (DoBind)
+	/*
+		if (DoBind)
 	{
 		ChannelSession.EventAfterParticipantAdded.AddUObject(this, &UrovrGameInstance::OnChannelParticipantAdded);
 		ChannelSession.EventBeforeParticipantRemoved.AddUObject(this, &UrovrGameInstance::OnChannelParticipantRemoved);
@@ -188,6 +192,7 @@ void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession&
 		ChannelSession.EventChannelStateChanged.RemoveAll(this);
 		ChannelSession.EventTextMessageReceived.RemoveAll(this);
 	}
+	*/
 }
 
 void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
