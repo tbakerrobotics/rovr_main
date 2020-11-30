@@ -22,6 +22,7 @@ If you experience build errors, follow the steps below:
 - Remove Steam and integrate standard online sub systems (user specifying a specific IP address)  
 - UI replace/improve  
 - Allow users to upload own images
+- Include "Are you sure you want to quit?" dialog when quit is clicked
 
 # Once complete:
 
