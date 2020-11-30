@@ -18,9 +18,17 @@ class ROVR_MAIN_API UrovrGameInstance : public UGameInstance
 private:
 	FVivoxCoreModule* vModule;
 	void Init() override;
+
+	void BindLoginSessionHandlers(bool DoBind, ILoginSession& LoginSession);
+	void BindChannelSessionHandlers(bool DoBind, IChannelSession& ChannelSession);
+
 	void OnLoginSessionStateChanged(LoginState State);
 	void OnChannelSessionConnectionStateChanged(const IChannelConnectionState &State);
+
 	void OnChannelParticipantAdded(const IParticipant &Participant);
+	void OnChannelParticipantRemoved(const IParticipant &Participant);
+	void OnChannelParticipantUpdated(const IParticipant &Participant);
+
 
 public:
 	AccountId Account;
@@ -32,9 +40,6 @@ public:
 public:
 	UFUNCTION(BlueprintCallable)
 		void JoinVoiceChannel(bool positionalAudio,FString channelName);
-
-	UFUNCTION(BlueprintCallable)
-		void sendTextMessage();
 
 	UFUNCTION(BlueprintCallable)
 		void initaliseVivox(FString name);
