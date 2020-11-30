@@ -43,8 +43,9 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 				// This bool is only illustrative. The user is now logged in.
 			}
 		});
-	BindLoginSessionHandlers(true, *MyLoginSession);
+	
 	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
+	BindLoginSessionHandlers(true, *MyLoginSession);
 
 	if (GEngine)
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Vivox Initalised")));
@@ -86,8 +87,9 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 			}
 		});
 
-	BindChannelSessionHandlers(true, *MyChannelSession);
+	
 	MyChannelSession->BeginConnect(true, false, true, JoinToken, OnBeginConnectCompleted);
+	BindChannelSessionHandlers(true, *MyChannelSession);
 
 }
 
@@ -158,7 +160,7 @@ void UrovrGameInstance::DestroyVivoxSession()
 
 void UrovrGameInstance::RemoveFromVivoxChannel() 
 {
-	MyChannelSession->Disconnect();
+	MyLoginSession->GetChannelSession(Channel).Disconnect();
 	MyLoginSession->DeleteChannelSession(Channel);
 }
 
@@ -246,6 +248,6 @@ void UrovrGameInstance::OnChannelParticipantUpdated(const IParticipant &Particip
 	ChannelId PatChannel = Participant.ParentChannelSession().Channel();
 	UE_LOG(LogTemp, Log, TEXT("%s has been updated in %s\n"), *Participant.Account().Name(), *Channel.Name());
 
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s has been updated in %s\n"), *Participant.Account().Name(), *PatChannel.Name()));
+	/*if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s has been updated in %s\n"), *Participant.Account().Name(), *PatChannel.Name()));*/
 }
