@@ -45,6 +45,9 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 		});
 	BindLoginSessionHandlers(true, *MyLoginSession);
 	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Vivox Initalised")));
 }
 
 void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
@@ -161,7 +164,6 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 
 
 void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& LoginSession) {
-	/*
 		if (DoBind)
 	{
 		LoginSession.EventStateChanged.AddUObject(this, &UrovrGameInstance::OnLoginSessionStateChanged);
@@ -170,12 +172,9 @@ void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& Log
 	{
 		LoginSession.EventStateChanged.RemoveAll(this);
 	}
-	*/
-
 }
 
 void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession& ChannelSession) {
-	/*
 		if (DoBind)
 	{
 		ChannelSession.EventAfterParticipantAdded.AddUObject(this, &UrovrGameInstance::OnChannelParticipantAdded);
@@ -192,7 +191,6 @@ void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession&
 		ChannelSession.EventChannelStateChanged.RemoveAll(this);
 		ChannelSession.EventTextMessageReceived.RemoveAll(this);
 	}
-	*/
 }
 
 void UrovrGameInstance::OnLoginSessionStateChanged(LoginState State)
