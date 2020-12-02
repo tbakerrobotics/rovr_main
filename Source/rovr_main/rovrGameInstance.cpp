@@ -12,6 +12,21 @@
 #define VIVOX_VOICE_ISSUER TEXT("wizdis5860-ro11-dev")
 #define VIVOX_VOICE_KEY TEXT("fizz340")
 
+/// Return the full name of a UEnum value as an FString
+template<typename TEnum>
+static FORCEINLINE FString GetUEnumAsString(const FString& Name, TEnum Value, bool ShortName)
+{
+	const UEnum* enumPtr = FindObject<UEnum>(ANY_PACKAGE, *Name, true);
+	if (!enumPtr)
+		return FString("InvalidUEnum");
+	if (ShortName)
+		return enumPtr->GetNameStringByIndex((int64)Value);
+	return enumPtr->GetNameByValue((int64)Value).ToString();
+}
+
+#define UEnumFullToString(Name, Value) GetUEnumAsString<Name>(#Name, Value, false)
+#define UEnumShortToString(Name, Value) GetUEnumAsString<Name>(#Name, Value, true)
+
 void UrovrGameInstance::Init()
 {
 	Super::Init();
@@ -86,8 +101,6 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 				// This bool is only illustrative. The connect call has completed.
 			}
 		});
-
-	
 	MyChannelSession->BeginConnect(true, false, true, JoinToken, OnBeginConnectCompleted);
 	BindChannelSessionHandlers(true, *MyChannelSession);
 
@@ -164,34 +177,51 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 	MyLoginSession->DeleteChannelSession(Channel);
 }
 
-bool UrovrGameInstance::Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar)
+bool UrovrGameInstance::Exec()
 {
-	if (FParse::Command(&Cmd, TEXT("VIVOXSTATE")))
-	{
-		if (MyVoiceClient->GetLoginSession(Account).ChannelSessions().Num() > 0)
+	bool StateCheck = false;
+	if (MyVoiceClient->GetLoginSession(Account).ChannelSessions().Num() > 0)
 		{
-			UE_LOG(LogTemp, Log, TEXT("Current Channel List:"));
-			UE_LOG(LogTemp, Log, TEXT("===================="));
-			for (auto &Session : MyVoiceClient->GetLoginSession(Account).ChannelSessions())
-			{
-				/*
-					UE_LOG(LogVivoxGameInstance, Log, TEXT("Name: %s, Type: %s, IsTransmitting: %s, AudioState: %s, TextState: %s"),
+		UE_LOG(LogTemp, Log, TEXT("Current Channel List:"));
+		UE_LOG(LogTemp, Log, TEXT("===================="));
+
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("Current Channel List:")));
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("====================")));
+
+		for (auto &Session : MyVoiceClient->GetLoginSession(Account).ChannelSessions())
+		{
+			UE_LOG(LogTemp, Log, TEXT("Name: %s, Type: %s, IsTransmitting: %s, AudioState: %s, TextState: %s"),
+			*Session.Value->Channel().Name(),
+			*UEnumShortToString(ChannelType, Session.Value->Channel().Type()),
+			Session.Value->IsTransmitting() ? TEXT("Yes") : TEXT("No"),
+			*UEnumShortToString(ConnectionState, Session.Value->AudioState()),
+			*UEnumShortToString(ConnectionState, Session.Value->TextState()));
+
+			if (GEngine)
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("Name: %s, Type: %s, IsTransmitting: %s, AudioState: %s, TextState: %s"),
 					*Session.Value->Channel().Name(),
 					*UEnumShortToString(ChannelType, Session.Value->Channel().Type()),
 					Session.Value->IsTransmitting() ? TEXT("Yes") : TEXT("No"),
 					*UEnumShortToString(ConnectionState, Session.Value->AudioState()),
-					*UEnumShortToString(ConnectionState, Session.Value->TextState()));
-				*/
-			}
-			UE_LOG(LogTemp, Log, TEXT("===================="));
+					*UEnumShortToString(ConnectionState, Session.Value->TextState())));
+		}
+
+		UE_LOG(LogTemp, Log, TEXT("===================="));
+
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("====================")));
 		}
 		else
 		{
 			UE_LOG(LogTemp, Log, TEXT("Current Channel List: Empty"));
+
+			if (GEngine)
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("Current Channel List: Empty")));
+
+			StateCheck = true;
 		}
-		return true;
-	}
-	return false;
+	return StateCheck;
 }
 
 
