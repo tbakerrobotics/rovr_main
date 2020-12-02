@@ -15,18 +15,16 @@ If you experience build errors, follow the steps below:
 3.Re-open Unreal
 
 # Tasks to complete:
-- Add in-game menu
-  - Client menu has leave session
-  - Server menu has return to lobby session and switch ma
-- Move vivox tokens over to production ready solution
-- Remove Steam and integrate standard online sub systems (user specifying a specific IP address)  
-- UI replace/improve  
-- Allow users to upload own images
 - Include "Are you sure you want to quit?" dialog when quit is clicked
+- Fix Vivox on moving maps
 
-# Once complete:
+# Migrate To Android
+1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
+2. Add UI functionality (look at test project)
+3. Ensure settings are correct for android (scalebale quality etc)
+4. Work out save files and how they work on android  
 
-MIGRATE TO ANDROID
-1. Add UI functionality (look at test project)
-2. Ensure settings are correct for android (scalebale quality etc)
-2. Work out save files and how they work on android  
+
+# Future Developments
+- Move vivox tokens over to production ready solution
+- Allow users to upload own images
