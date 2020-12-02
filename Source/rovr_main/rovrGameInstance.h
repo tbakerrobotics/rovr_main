@@ -25,6 +25,8 @@ private:
 	void OnLoginSessionStateChanged(LoginState State);
 	void OnChannelSessionConnectionStateChanged(const IChannelConnectionState &State);
 
+	bool Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar);
+
 	void OnChannelParticipantAdded(const IParticipant &Participant);
 	void OnChannelParticipantRemoved(const IParticipant &Participant);
 	void OnChannelParticipantUpdated(const IParticipant &Participant);

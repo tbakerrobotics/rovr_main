@@ -164,6 +164,36 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 	MyLoginSession->DeleteChannelSession(Channel);
 }
 
+bool UrovrGameInstance::Exec(UWorld* InWorld, const TCHAR* Cmd, FOutputDevice& Ar)
+{
+	if (FParse::Command(&Cmd, TEXT("VIVOXSTATE")))
+	{
+		if (MyVoiceClient->GetLoginSession(Account).ChannelSessions().Num() > 0)
+		{
+			UE_LOG(LogTemp, Log, TEXT("Current Channel List:"));
+			UE_LOG(LogTemp, Log, TEXT("===================="));
+			for (auto &Session : MyVoiceClient->GetLoginSession(Account).ChannelSessions())
+			{
+				/*
+					UE_LOG(LogVivoxGameInstance, Log, TEXT("Name: %s, Type: %s, IsTransmitting: %s, AudioState: %s, TextState: %s"),
+					*Session.Value->Channel().Name(),
+					*UEnumShortToString(ChannelType, Session.Value->Channel().Type()),
+					Session.Value->IsTransmitting() ? TEXT("Yes") : TEXT("No"),
+					*UEnumShortToString(ConnectionState, Session.Value->AudioState()),
+					*UEnumShortToString(ConnectionState, Session.Value->TextState()));
+				*/
+			}
+			UE_LOG(LogTemp, Log, TEXT("===================="));
+		}
+		else
+		{
+			UE_LOG(LogTemp, Log, TEXT("Current Channel List: Empty"));
+		}
+		return true;
+	}
+	return false;
+}
+
 
 void UrovrGameInstance::BindLoginSessionHandlers(bool DoBind, ILoginSession& LoginSession) {
 		if (DoBind)
