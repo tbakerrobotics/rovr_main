@@ -20,6 +20,8 @@ If you experience build errors, follow the steps below:
 - Disable buttons in Main Menu options once accept is pressed.
 - Try disable cursor when t is pressed. Maybe that fixes click and drag looking around?
 - Lobby map is weirdly stretched. 
+- Add "show connected to vivox voice channel" on E press
+- Remove space character from username for vivox 
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
