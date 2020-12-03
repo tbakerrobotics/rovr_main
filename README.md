@@ -24,6 +24,7 @@ If you experience build errors, follow the steps below:
 - Remove space character from username for vivox 
 - Tweak vivox positional values for volume close and drop off after
 - Audio type in lobby and game menu isnt updating
+- When server leaves the game and clients are booted out, the clients are not removed from the vivox session
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
