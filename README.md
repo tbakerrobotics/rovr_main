@@ -22,6 +22,8 @@ If you experience build errors, follow the steps below:
 - Lobby map is weirdly stretched. 
 - Add "show connected to vivox voice channel" on E press
 - Remove space character from username for vivox 
+- Tweak vivox positional values for volume close and drop off after
+- Audio type in lobby and game menu isnt updating
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
