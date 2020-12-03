@@ -18,7 +18,8 @@ If you experience build errors, follow the steps below:
 - Tidy up in game UI
 - Return to lobby doesn't teleport all players back, doesn't carry over character
 - Disable buttons in Main Menu options once accept is pressed.
-- Try disable cursor when t is pressed, Maybe that fixes click and drag looking around?
+- Try disable cursor when t is pressed. Maybe that fixes click and drag looking around?
+- Lobby map is weirdly stretched. 
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
