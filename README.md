@@ -15,9 +15,10 @@ If you experience build errors, follow the steps below:
 3.Re-open Unreal
 
 # Tasks to complete:
-- Include "Are you sure you want to quit?" dialog when quit is clicked
 - Tidy up in game UI
 - Return to lobby doesn't teleport all players back, doesn't carry over character
+- Disable buttons in Main Menu options once accept is pressed.
+- Try disable cursor when t is pressed, Maybe that fixes click and drag looking around?
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
@@ -27,5 +28,5 @@ If you experience build errors, follow the steps below:
 
 
 # Future Developments
-- Move vivox tokens over to production ready solution
+- Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
