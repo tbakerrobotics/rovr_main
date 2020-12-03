@@ -17,6 +17,7 @@ If you experience build errors, follow the steps below:
 # Tasks to complete:
 - Include "Are you sure you want to quit?" dialog when quit is clicked
 - Tidy up in game UI
+- Return to lobby doesn't teleport all players back, doesn't carry over character
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
