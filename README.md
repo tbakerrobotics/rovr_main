@@ -14,6 +14,9 @@ If you experience build errors, follow the steps below:
 
 3.Re-open Unreal
 
+# Tasks to complete
+- Fix name plates in lobby. Game works but lobby doesn't
+
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
 2. Add UI functionality (look at test project)
