@@ -18,7 +18,7 @@ If you experience build errors, follow the steps below:
 - Tidy up in game UI
 - Return to lobby doesn't carry over character
 - Lobby map is weirdly stretched. 
-- Add "connected players to vivox voice channel" on E press
+- Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
 - Tweak vivox positional values for volume close and drop off after
 
 # Migrate To Android
