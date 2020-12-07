@@ -60,4 +60,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 		bool Exec();
+
+	UFUNCTION(BlueprintCallable)
+		void PopulatedChannel();
 };

@@ -177,6 +177,23 @@ void UrovrGameInstance::RemoveFromVivoxChannel()
 	MyLoginSession->DeleteChannelSession(Channel);
 }
 
+void UrovrGameInstance::PopulatedChannel() {
+	/*
+		if (MyVoiceClient->GetLoginSession(Account).ChannelSessions().Num() > 0)
+	{
+		for (auto &Session : MyVoiceClient->GetLoginSession(Account).ChannelSessions())
+		{
+			for (auto &Participant : Session.Value->Participants()) {
+			}
+		}
+	}
+	
+	
+	*/
+}
+
+
+
 bool UrovrGameInstance::Exec()
 {
 	bool StateCheck = false;
@@ -205,6 +222,8 @@ bool UrovrGameInstance::Exec()
 					Session.Value->IsTransmitting() ? TEXT("Yes") : TEXT("No"),
 					*UEnumShortToString(ConnectionState, Session.Value->AudioState()),
 					*UEnumShortToString(ConnectionState, Session.Value->TextState())));
+
+
 		}
 
 		UE_LOG(LogTemp, Log, TEXT("===================="));
