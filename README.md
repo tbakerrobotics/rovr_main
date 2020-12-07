@@ -14,19 +14,14 @@ If you experience build errors, follow the steps below:
 
 3.Re-open Unreal
 
-# Tasks to complete:
-- Tidy up in game UI
-- Lobby map is weirdly stretched. 
-- Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
-- Tweak vivox positional values for volume close and drop off after
-
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
 2. Add UI functionality (look at test project)
 3. Ensure settings are correct for android (scalebale quality etc)
 4. Work out save files and how they work on android  
 
-
 # Future Developments
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
+- Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
+- Tweak vivox positional values for volume close and drop off after
