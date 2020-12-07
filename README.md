@@ -16,15 +16,11 @@ If you experience build errors, follow the steps below:
 
 # Tasks to complete:
 - Tidy up in game UI
-- Return to lobby doesn't teleport all players back, doesn't carry over character
-- Disable buttons in Main Menu options once accept is pressed.
+- Return to lobby doesn't carry over character
 - Try disable cursor when t is pressed. Maybe that fixes click and drag looking around?
 - Lobby map is weirdly stretched. 
 - Add "connected players to vivox voice channel" on E press
-- Remove space character from username for vivox 
 - Tweak vivox positional values for volume close and drop off after
-- Audio type in lobby and game menu isnt updating
-- When server leaves the game and clients are booted out, the clients are not removed from the vivox session
 
 # Migrate To Android
 1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
