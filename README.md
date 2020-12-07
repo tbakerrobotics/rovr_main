@@ -17,7 +17,6 @@ If you experience build errors, follow the steps below:
 # Tasks to complete:
 - Tidy up in game UI
 - Return to lobby doesn't carry over character
-- Disable buttons in Main Menu options once accept is pressed.
 - Try disable cursor when t is pressed. Maybe that fixes click and drag looking around?
 - Lobby map is weirdly stretched. 
 - Add "connected players to vivox voice channel" on E press
