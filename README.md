@@ -20,7 +20,7 @@ If you experience build errors, follow the steps below:
 - Disable buttons in Main Menu options once accept is pressed.
 - Try disable cursor when t is pressed. Maybe that fixes click and drag looking around?
 - Lobby map is weirdly stretched. 
-- Add "show connected to vivox voice channel" on E press
+- Add "connected players to vivox voice channel" on E press
 - Remove space character from username for vivox 
 - Tweak vivox positional values for volume close and drop off after
 - Audio type in lobby and game menu isnt updating
