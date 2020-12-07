@@ -59,7 +59,7 @@ public:
 		void RemoveFromVivoxChannel();
 
 	UFUNCTION(BlueprintCallable)
-		bool Exec();
+		bool showChannelConnections();
 
 	UFUNCTION(BlueprintCallable)
 		void PopulatedChannel();

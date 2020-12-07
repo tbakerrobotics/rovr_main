@@ -194,7 +194,7 @@ void UrovrGameInstance::PopulatedChannel() {
 
 
 
-bool UrovrGameInstance::Exec()
+bool UrovrGameInstance::showChannelConnections()
 {
 	bool StateCheck = false;
 	if (MyVoiceClient->GetLoginSession(Account).ChannelSessions().Num() > 0)
