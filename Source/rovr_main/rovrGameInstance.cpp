@@ -7,6 +7,7 @@
 #include "AndroidPermissionCallbackProxy.h"
 #include "Kismet/GameplayStatics.h"
 
+
 #define VIVOX_VOICE_SERVER TEXT("https://mt1s.www.vivox.com/api2")
 #define VIVOX_VOICE_DOMAIN TEXT("mt1s.vivox.com")
 #define VIVOX_VOICE_ISSUER TEXT("wizdis5860-ro11-dev")
@@ -36,6 +37,10 @@ void UrovrGameInstance::Init()
 void UrovrGameInstance::initaliseVivox(FString name) {
 	MyVoiceClient = &vModule->VoiceClient();
 	MyVoiceClient->Initialize();
+
+	if (name == "") {
+		name = "BlankUser";
+	}
 
 	Account = AccountId(VIVOX_VOICE_ISSUER, name, VIVOX_VOICE_DOMAIN);
 	MyLoginSession = &MyVoiceClient->GetLoginSession(Account);
@@ -71,6 +76,13 @@ void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FStri
 	globalAudioType=positionalAudio;
 	globalChannelName=channelName;
 
+	if (globalChannelName == "") {
+		globalChannelName = "blankChannel";
+	}
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("globalChannelName : %s"), *globalChannelName));
+
 	JoinVoiceChannel();
 }
 
@@ -82,13 +94,17 @@ void UrovrGameInstance::JoinVoiceWithPermission()
 	if (globalAudioType) {
 		//Positional Audio
 		rovrSessionType = ChannelType::Positional;
+		if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - TRUE"));
 	}
 	else {
 		//Use Direct Audio
 		rovrSessionType = ChannelType::NonPositional;
+		if (GEngine)
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - FALSE"));
 	}
-
-	Channel = ChannelId(VIVOX_VOICE_ISSUER, globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+	
+	Channel = ChannelId(VIVOX_VOICE_ISSUER, *globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
 
 	MyChannelSession = &MyLoginSession->GetChannelSession(Channel);
 
@@ -147,7 +163,7 @@ void UrovrGameInstance::JoinVoiceChannel()
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
-		//JoinVoiceWithPermission();
+		JoinVoiceWithPermission();
 	}
 #else 
 	// Not Android
