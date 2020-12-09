@@ -32,6 +32,16 @@ void UrovrGameInstance::Init()
 {
 	Super::Init();
 	vModule = static_cast<FVivoxCoreModule *>(&FModuleManager::Get().LoadModuleChecked(TEXT("VivoxCore")));
+
+#if PLATFORM_ANDROID
+	{
+		androidPlatform_check = true;
+	}
+#else
+	{
+		androidPlatform_check = false;
+	}
+#endif
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
