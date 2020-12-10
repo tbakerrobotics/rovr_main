@@ -7,7 +7,6 @@
 #include "AndroidPermissionCallbackProxy.h"
 #include "Kismet/GameplayStatics.h"
 
-
 #define VIVOX_VOICE_SERVER TEXT("https://mt1s.www.vivox.com/api2")
 #define VIVOX_VOICE_DOMAIN TEXT("mt1s.vivox.com")
 #define VIVOX_VOICE_ISSUER TEXT("wizdis5860-ro11-dev")
@@ -32,25 +31,11 @@ void UrovrGameInstance::Init()
 {
 	Super::Init();
 	vModule = static_cast<FVivoxCoreModule *>(&FModuleManager::Get().LoadModuleChecked(TEXT("VivoxCore")));
-
-#if PLATFORM_ANDROID
-	{
-		androidPlatform_check = true;
-	}
-#else
-	{
-		androidPlatform_check = false;
-	}
-#endif
 }
 
 void UrovrGameInstance::initaliseVivox(FString name) {
 	MyVoiceClient = &vModule->VoiceClient();
 	MyVoiceClient->Initialize();
-
-	if (name == "") {
-		name = "BlankUser";
-	}
 
 	Account = AccountId(VIVOX_VOICE_ISSUER, name, VIVOX_VOICE_DOMAIN);
 	MyLoginSession = &MyVoiceClient->GetLoginSession(Account);
@@ -81,40 +66,37 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Vivox Initalised")));
 }
 
+<<<<<<< HEAD
+void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
+=======
 void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FString channelName) 
 {
 	globalAudioType=positionalAudio;
 	globalChannelName=channelName;
-
-	if (globalChannelName == "") {
-		globalChannelName = "blankChannel";
-	}
-
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("globalChannelName : %s"), *globalChannelName));
 
 	JoinVoiceChannel();
 }
 
 
 void UrovrGameInstance::JoinVoiceWithPermission()
+>>>>>>> parent of 94ad24d... updated for android
 {
 	ChannelType rovrSessionType;
 
-	if (globalAudioType) {
+	if (positionalAudio) {
 		//Positional Audio
 		rovrSessionType = ChannelType::Positional;
-		if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - TRUE"));
 	}
 	else {
 		//Use Direct Audio
 		rovrSessionType = ChannelType::NonPositional;
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - FALSE"));
 	}
-	
-	Channel = ChannelId(VIVOX_VOICE_ISSUER, *globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+
+<<<<<<< HEAD
+	Channel = ChannelId(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+=======
+	Channel = ChannelId(VIVOX_VOICE_ISSUER, globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+>>>>>>> parent of 94ad24d... updated for android
 
 	MyChannelSession = &MyLoginSession->GetChannelSession(Channel);
 
@@ -138,11 +120,12 @@ void UrovrGameInstance::JoinVoiceWithPermission()
 		});
 	MyChannelSession->BeginConnect(true, false, true, JoinToken, OnBeginConnectCompleted);
 	BindChannelSessionHandlers(true, *MyChannelSession);
+
 }
 
-void UrovrGameInstance::JoinVoiceChannel()
+void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelName)
 {
-#if PLATFORM_ANDROID
+	#if PLATFORM_ANDROID
 	if (!UAndroidPermissionFunctionLibrary::CheckPermission(TEXT("android.permission.RECORD_AUDIO")))
 	{
 		// Build an array of permissions to request
@@ -162,7 +145,7 @@ void UrovrGameInstance::JoinVoiceChannel()
 							// We got RECORD_AUDIO permission, now we can use the mic
 							if (GEngine)
 								GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:We got RECORD_AUDIO permission, now we can use the mic - Calling Join"));
-							JoinVoiceWithPermission();
+							JoinVoiceWithPermission(positionalAudio, channelName);
 						}
 					}
 				});
@@ -173,11 +156,15 @@ void UrovrGameInstance::JoinVoiceChannel()
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
-		JoinVoiceWithPermission();
+<<<<<<< HEAD
+		JoinVoiceWithPermission(positionalAudio, channelName);
+=======
+		//JoinVoiceWithPermission();
+>>>>>>> parent of 94ad24d... updated for android
 	}
 #else 
 	// Not Android
-	JoinVoiceWithPermission();
+	JoinVoiceWithPermission(positionalAudio, channelName);
 #endif
 }
 

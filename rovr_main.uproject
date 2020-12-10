@@ -17,31 +17,6 @@
 		{
 			"Name": "OnlineSubsystemSteam",
 			"Enabled": true
-		},
-		{
-			"Name": "OculusVR",
-			"Enabled": false,
-			"SupportedTargetPlatforms": [
-				"Win32",
-				"Win64",
-				"Android"
-			]
-		},
-		{
-			"Name": "PicoNeoController",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoMobileController",
-			"Enabled": true
-		},
-		{
-			"Name": "PicoMobile",
-			"Enabled": true
 		}
-	],
-	"TargetPlatforms": [
-		"WindowsNoEditor",
-		"Android"
 	]
 }
