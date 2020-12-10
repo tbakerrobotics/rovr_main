@@ -29,15 +29,15 @@
 		},
 		{
 			"Name": "PicoNeoController",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "PicoMobileController",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "PicoMobile",
-			"Enabled": false
+			"Enabled": true
 		}
 	],
 	"TargetPlatforms": [
