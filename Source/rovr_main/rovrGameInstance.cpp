@@ -79,7 +79,6 @@ void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FStri
 
 
 void UrovrGameInstance::JoinVoiceWithPermission()
->>>>>>> parent of 94ad24d... updated for android
 {
 	ChannelType rovrSessionType;
 
@@ -92,11 +91,7 @@ void UrovrGameInstance::JoinVoiceWithPermission()
 		rovrSessionType = ChannelType::NonPositional;
 	}
 
-<<<<<<< HEAD
-	Channel = ChannelId(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
-=======
 	Channel = ChannelId(VIVOX_VOICE_ISSUER, globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
->>>>>>> parent of 94ad24d... updated for android
 
 	MyChannelSession = &MyLoginSession->GetChannelSession(Channel);
 
