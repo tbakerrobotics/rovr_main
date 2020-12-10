@@ -66,7 +66,20 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Vivox Initalised")));
 }
 
+<<<<<<< HEAD
 void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString channelName)
+=======
+void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FString channelName) 
+{
+	globalAudioType=positionalAudio;
+	globalChannelName=channelName;
+
+	JoinVoiceChannel();
+}
+
+
+void UrovrGameInstance::JoinVoiceWithPermission()
+>>>>>>> parent of 94ad24d... updated for android
 {
 	ChannelType rovrSessionType;
 
@@ -79,7 +92,11 @@ void UrovrGameInstance::JoinVoiceWithPermission(bool positionalAudio,FString cha
 		rovrSessionType = ChannelType::NonPositional;
 	}
 
+<<<<<<< HEAD
 	Channel = ChannelId(VIVOX_VOICE_ISSUER, channelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+=======
+	Channel = ChannelId(VIVOX_VOICE_ISSUER, globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
+>>>>>>> parent of 94ad24d... updated for android
 
 	MyChannelSession = &MyLoginSession->GetChannelSession(Channel);
 
@@ -139,7 +156,11 @@ void UrovrGameInstance::JoinVoiceChannel(bool positionalAudio, FString channelNa
 		if (GEngine) {
 			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
+<<<<<<< HEAD
 		JoinVoiceWithPermission(positionalAudio, channelName);
+=======
+		//JoinVoiceWithPermission();
+>>>>>>> parent of 94ad24d... updated for android
 	}
 #else 
 	// Not Android
