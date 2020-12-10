@@ -37,9 +37,15 @@ public:
 	ILoginSession *MyLoginSession;
 	IChannelSession *MyChannelSession;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool globalAudioType;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FString globalChannelName;
+
 public:
 	UFUNCTION(BlueprintCallable)
-		void JoinVoiceChannel(bool positionalAudio,FString channelName);
+		void JoinVoiceChannel();
 
 	UFUNCTION(BlueprintCallable)
 		void initaliseVivox(FString name);
@@ -50,7 +56,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 		void Update3DPosition(FVector ActorLocation, FVector ActorForwardVector, FVector ActorUpVector, FString channelName);
 
-	void JoinVoiceWithPermission(bool positionalAudio,FString channelName);
+	void JoinVoiceWithPermission();
 
 	UFUNCTION(BlueprintCallable)
 		void DestroyVivoxSession();
@@ -59,8 +65,11 @@ public:
 		void RemoveFromVivoxChannel();
 
 	UFUNCTION(BlueprintCallable)
-		bool Exec();
+		bool showChannelConnections();
 
 	UFUNCTION(BlueprintCallable)
 		void PopulatedChannel();
+
+	UFUNCTION(BlueprintCallable)
+		void Vivox_SetAudioType_JoinVoice(bool positionalAudio, FString channelName);
 };
