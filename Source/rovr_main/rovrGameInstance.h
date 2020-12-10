@@ -38,6 +38,9 @@ public:
 	IChannelSession *MyChannelSession;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool androidPlatform_check;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		bool globalAudioType;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)

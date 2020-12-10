@@ -26,6 +26,18 @@
 				"Win64",
 				"Android"
 			]
+		},
+		{
+			"Name": "PicoNeoController",
+			"Enabled": false
+		},
+		{
+			"Name": "PicoMobileController",
+			"Enabled": false
+		},
+		{
+			"Name": "PicoMobile",
+			"Enabled": false
 		}
 	],
 	"TargetPlatforms": [
