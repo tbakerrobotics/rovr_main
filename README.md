@@ -4,7 +4,7 @@ Platform Functions on both Android & PC. If building for PC ensure that the Pico
 
 Unreal Version : 4.25.3\
 Vivox SDK Version : 5.13.0.unr.1\
-Pico SDK Version : v1.2.3\
+Pico SDK Version : v1.2.3
 
 # Known Bugs
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
@@ -37,4 +37,4 @@ If you experience build errors, follow the steps below:
 2.Delete the Visual Studio or Xcode solution file (.sln or .xcodeproj)\
 3.Right click on the uproject file and click 'Generate Visual Studio Files'\
 4.Open the sln file and build the c++ project.\
-5.Re-open Unreal\
+5.Re-open Unreal
