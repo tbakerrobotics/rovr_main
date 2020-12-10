@@ -12,7 +12,6 @@
 *.pch
 
 # Compiled Dynamic libraries
-*.so
 *.dylib
 *.dll
 
@@ -54,6 +53,9 @@ Build/*
 
 #Plugins
 Plugins/VivoxCoreUE4Plugin/*
+Plugins/PicoNeoController/*
+Plugins/PicoMobileController/*
+Plugins/PicoMobile/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
