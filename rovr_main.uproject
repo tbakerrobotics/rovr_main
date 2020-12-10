@@ -17,6 +17,18 @@
 		{
 			"Name": "OnlineSubsystemSteam",
 			"Enabled": true
+		},
+		{
+			"Name": "PicoNeoController",
+			"Enabled": false
+		},
+		{
+			"Name": "PicoMobileController",
+			"Enabled": false
+		},
+		{
+			"Name": "PicoMobile",
+			"Enabled": false
 		}
 	]
 }
