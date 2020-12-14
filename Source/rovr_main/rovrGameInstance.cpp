@@ -7,7 +7,6 @@
 #include "AndroidPermissionCallbackProxy.h"
 #include "Kismet/GameplayStatics.h"
 
-
 #define VIVOX_VOICE_SERVER TEXT("https://mt1s.www.vivox.com/api2")
 #define VIVOX_VOICE_DOMAIN TEXT("mt1s.vivox.com")
 #define VIVOX_VOICE_ISSUER TEXT("wizdis5860-ro11-dev")
@@ -77,8 +76,6 @@ void UrovrGameInstance::initaliseVivox(FString name) {
 	MyLoginSession->BeginLogin(VIVOX_VOICE_SERVER, LoginToken, OnBeginLoginCompleted);
 	BindLoginSessionHandlers(true, *MyLoginSession);
 
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("Vivox Initalised")));
 }
 
 void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FString channelName) 
@@ -89,9 +86,6 @@ void UrovrGameInstance::Vivox_SetAudioType_JoinVoice(bool positionalAudio, FStri
 	if (globalChannelName == "") {
 		globalChannelName = "blankChannel";
 	}
-
-	if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Purple, FString::Printf(TEXT("globalChannelName : %s"), *globalChannelName));
 
 	JoinVoiceChannel();
 }
@@ -104,14 +98,10 @@ void UrovrGameInstance::JoinVoiceWithPermission()
 	if (globalAudioType) {
 		//Positional Audio
 		rovrSessionType = ChannelType::Positional;
-		if (GEngine)
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - TRUE"));
 	}
 	else {
 		//Use Direct Audio
 		rovrSessionType = ChannelType::NonPositional;
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Purple, TEXT("GLOBAL AUDIO TYPE - FALSE"));
 	}
 	
 	Channel = ChannelId(VIVOX_VOICE_ISSUER, *globalChannelName, VIVOX_VOICE_DOMAIN, rovrSessionType);
@@ -160,8 +150,10 @@ void UrovrGameInstance::JoinVoiceChannel()
 						if (GrantResults[0])
 						{
 							// We got RECORD_AUDIO permission, now we can use the mic
-							if (GEngine)
-								GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:We got RECORD_AUDIO permission, now we can use the mic - Calling Join"));
+							/*
+								if (GEngine)
+									GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:We got RECORD_AUDIO permission, now we can use the mic - Calling Join"));
+							*/
 							JoinVoiceWithPermission();
 						}
 					}
@@ -170,9 +162,11 @@ void UrovrGameInstance::JoinVoiceChannel()
 	}
 	else {
 		// We already had permissions so continue using the mic;
+		/*
 		if (GEngine) {
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("ANDROID:Already had RECORD_AUDIO permissions - Calling Join"));
 		}
+		*/
 		JoinVoiceWithPermission();
 	}
 #else 
@@ -221,12 +215,8 @@ void UrovrGameInstance::PopulatedChannel() {
 			}
 		}
 	}
-	
-	
 	*/
 }
-
-
 
 bool UrovrGameInstance::showChannelConnections()
 {
