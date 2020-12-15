@@ -9,10 +9,12 @@ Pico SDK Version : v1.2.3
 # Known Bugs
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
 - Returning to lobby does not make the already selected characters unavailable
+- Client Character doesn't spawn with name initally, but changes when different avatar is selected.
 
 # Tasks to complete
 - Fix name plates in lobby. Game works but lobby doesn't
 - Determine way to update ReturnToLobby boolean for everyone
+- Internet network error handling
 
 # Future Developments
 - Move vivox tokens over to production ready solutionw
