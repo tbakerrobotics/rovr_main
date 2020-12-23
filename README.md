@@ -6,6 +6,12 @@ Unreal Version : 4.25.3\
 Vivox SDK Version : 5.13.0.unr.1\
 Pico SDK Version : v1.2.3
 
+# January Reminder
+- Return To Lobby Issue for Server (caused by on swap player controller event - firing too quickly one after another).
+- Vivox Positional Audio - Check Fuctionality 
+- Android Lobby UI 
+- Android Movement 
+
 # Known Bugs
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
 - Returning to lobby does not make the already selected characters unavailable
