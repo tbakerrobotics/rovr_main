@@ -12,10 +12,9 @@ Pico SDK Version : v1.2.3
 - Android Lobby UI 
 - Android Movement 
 
-# Known Bugs
+# Known Bugs/Fixes Required
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
 - Returning to lobby does not make the already selected characters unavailable
-- Client Character doesn't spawn with name initally, but changes when different avatar is selected.
 
 # Tasks to complete
 - Fix name plates in lobby. Game works but lobby doesn't
@@ -27,13 +26,7 @@ Pico SDK Version : v1.2.3
 - Allow users to upload own images
 - Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
 - Tweak vivox positional values for volume close and drop off after
-
-# Migrate To Android
-1. Remove Steam and integrate standard online sub systems (user specifying a specific IP address)   
-2. Add UI functionality (look at test project)
-3. Ensure settings are correct for android (scalebale quality etc)
-4. Work out save files and how they work on android  
-
+- Vivox audio gain needs increasing
 
 # If You Have Issues Building : 
 
