@@ -13,6 +13,7 @@ Pico SDK Version : v1.2.3
 - Android Movement 
 - Android Volume Needs Increasing
 - Android leave game not working - event end play not handled
+- Android Name Tag not present
 
 # Known Bugs/Fixes Required
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
