@@ -14,6 +14,7 @@ Pico SDK Version : v1.2.3
 - Android Volume Needs Increasing
 - Android leave game not working - event end play not handled
 - Android Name Tag not present
+- Android player not spawned when entering new map - standard PC character
 
 # Known Bugs/Fixes Required
 - If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
@@ -25,6 +26,7 @@ Pico SDK Version : v1.2.3
 - Internet network error handling
 
 # Future Developments
+- Fix rotation for HMD movement-speak to TB
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
 - Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
