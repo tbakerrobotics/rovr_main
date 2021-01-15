@@ -9,17 +9,20 @@ FCriticalSection CriticalSection; // <-- not a pointer, but an actual instance!
 
 void AlobbyGMParent::setUpMutexLock(APlayerController* PC) {
 	// unprotected things here...
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("C SCRIPT - BEFORE LOCK"));
 	{
 		// do protected things here..
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("C SCRIPT - BEFORE LOCK"));
+
 
 		FScopeLock Lock(&CriticalSection);
 		Event_MutexPlayerHandler(PC);
 
-		if (GEngine)
-			GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("C SCRIPT - AFTER LOCK"));
 	}
+
+	if (GEngine)
+		GEngine->AddOnScreenDebugMessage(-1, 30.0f, FColor::Red, TEXT("C SCRIPT - AFTER LOCK"));
 	// unprotected things here...
 }
 
