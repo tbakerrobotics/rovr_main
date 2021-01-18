@@ -40,6 +40,7 @@ If you experience build errors, follow the steps below:
 ## Development Fixes (JP/TB)
 - Fix name tag
 - Toggle Ready update
+- Step Count
 - Android Lobby UI 
 - Android Movement - Fix rotation for HMD movement-speak to TB
 - Android Volume Needs Increasing
