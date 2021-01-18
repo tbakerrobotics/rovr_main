@@ -7,8 +7,6 @@ Vivox SDK Version : 5.13.0.unr.1\
 Pico SDK Version : v1.2.3
 
 # January Reminder
-- Return To Lobby Issue for Server (caused by on swap player controller event - firing too quickly one after another).
-- Vivox Positional Audio - Check Fuctionality 
 - Android Lobby UI 
 - Android Movement 
 - Android Volume Needs Increasing
