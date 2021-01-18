@@ -5,7 +5,9 @@
 ## Overview
 ![Socal VR Platform](ROVR_IMAGE.png)
 
-The Social Platform functions on both PC & Android (Pico Neo 2). If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
+The social VR platform allows geographically distanced groups to meet in VR. The system is developed in Unreal Engine using the OnlineSubSystem peer to peer network functionality, which requires a known IP address for the host and related network settings (usually port forwarding and remove of firewall). Users are able to interate verbally through Vivox voice services - both direction audio and posional audio and enabled within this platform.
+
+The Social Platform functions on both PC & Android (Pico Neo 2). 
 
 ### SDK Information 
 Unreal Version : 4.25.3\
@@ -23,7 +25,7 @@ Jamie Pierce & Thomas Baker \
 - Returning to lobby does not make the already selected characters unavailable
 
 ## Additional Information
-This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. 
+This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
 
 If you experience build errors, follow the steps below:
 
@@ -49,6 +51,10 @@ If you experience build errors, follow the steps below:
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
 - Tweak vivox positional values for volume close and drop off after
+-PlayFab , Gamespark , AWS, Improbable IO - GameSparks for easy account creation/handling, cloud code, currency management, analytics, etc.)
+
+
+
 
 
 
