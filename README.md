@@ -7,29 +7,22 @@ Vivox SDK Version : 5.13.0.unr.1\
 Pico SDK Version : v1.2.3
 
 # January Reminder
+- Fix name tag
+- Toggle Ready update
 - Android Lobby UI 
-- Android Movement 
+- Android Movement - Fix rotation for HMD movement-speak to TB
 - Android Volume Needs Increasing
 - Android leave game not working - event end play not handled
 - Android Name Tag not present
 - Android player not spawned when entering new map - standard PC character
 
 # Known Bugs/Fixes Required
-- If the server starts the session without anyone in, and then returns to lobby, 'ReturnToLobby' boolean will be true so joining users will not have the setup run properly.
 - Returning to lobby does not make the already selected characters unavailable
 
-# Tasks to complete
-- Fix name plates in lobby. Game works but lobby doesn't
-- Determine way to update ReturnToLobby boolean for everyone
-- Internet network error handling
-
 # Future Developments
-- Fix rotation for HMD movement-speak to TB
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
-- Add "connected players to vivox voice channel" on E press - In Progess - TB to finish
 - Tweak vivox positional values for volume close and drop off after
-- Vivox audio gain needs increasing
 
 # If You Have Issues Building : 
 
