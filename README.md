@@ -1,8 +1,9 @@
+<img src="ROVR_LOGO.png" width="250" />
 
 # ROVR Social VR Platform
 
 ## Overview
-![Screenshot](ROVR_IMAGE.png)
+![Socal VR Platform](ROVR_IMAGE.png)
 
 The Social Platform functions on both PC & Android (Pico Neo 2). If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
 
@@ -11,8 +12,17 @@ Unreal Version : 4.25.3\
 Vivox SDK Version : 5.13.0.unr.1\
 Pico SDK Version : v1.2.3
 
-### If You Experience Build Issues: 
+## Features
+To follow .....
 
+## Contributors 
+Jamie Pierce & Thomas Baker \
+© Copyright Wizdish Ltd 2021
+
+## Known Bugs/Fixes Required
+- Returning to lobby does not make the already selected characters unavailable
+
+## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. 
 
 If you experience build errors, follow the steps below:
@@ -23,13 +33,6 @@ If you experience build errors, follow the steps below:
 4.Open the sln file and build the c++ project.\
 5.Re-open Unreal
 
-## Known Bugs/Fixes Required
-- Returning to lobby does not make the already selected characters unavailable
-
-## Future Developments
-- Move vivox tokens over to production ready solutionw
-- Allow users to upload own images
-- Tweak vivox positional values for volume close and drop off after
 
 
 ## Development Fixes (JP/TB)
@@ -41,3 +44,11 @@ If you experience build errors, follow the steps below:
 - Android leave game not working - event end play not handled
 - Android Name Tag not present
 - Android player not spawned when entering new map - standard PC character
+
+### Future Developments
+- Move vivox tokens over to production ready solutionw
+- Allow users to upload own images
+- Tweak vivox positional values for volume close and drop off after
+
+
+
