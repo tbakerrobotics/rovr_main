@@ -22,13 +22,10 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Returning to lobby does not make the already selected characters unavailable
-- Android Lobby UI 
-- Android Movement - Fix rotation for HMD movement-speak to TB
-- Fix name tag
+- Android Movement - Fix rotation for HMD movement
+- Android Fix name tag
 - Android leave game not working - event end play not handle
-- Android Name Tag not present
-- Android player not spawned when entering new map - standard PC characterd
+- Android player not spawned when entering new map - standard PC character
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
