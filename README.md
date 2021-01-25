@@ -23,6 +23,12 @@ Jamie Pierce & Thomas Baker \
 
 ## Known Bugs/Fixes Required
 - Returning to lobby does not make the already selected characters unavailable
+- Android Lobby UI 
+- Android Movement - Fix rotation for HMD movement-speak to TB
+- Fix name tag
+- Android leave game not working - event end play not handle
+- Android Name Tag not present
+- Android player not spawned when entering new map - standard PC characterd
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
@@ -35,26 +41,9 @@ If you experience build errors, follow the steps below:
 4.Open the sln file and build the c++ project.\
 5.Re-open Unreal
 
-
-
-## Development Fixes (JP/TB)
-- Fix name tag
+## Future Developments
 - Step Count
-- Android Lobby UI 
-- Android Movement - Fix rotation for HMD movement-speak to TB
-- Android Volume Needs Increasing
-- Android leave game not working - event end play not handled
-- Android Name Tag not present
-- Android player not spawned when entering new map - standard PC character
-
-### Future Developments
+- Android Volume Needs Increasing - vivox positional values for volume close and drop off after
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
-- Tweak vivox positional values for volume close and drop off after
--PlayFab , Gamespark , AWS, Improbable IO - GameSparks for easy account creation/handling, cloud code, currency management, analytics, etc.)
-
-
-
-
-
-
+- PlayFab , Gamespark , AWS, Improbable IO - GameSparks for easy account creation/handling, cloud code, currency management, analytics, etc.)
