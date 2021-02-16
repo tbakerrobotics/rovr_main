@@ -20,15 +20,15 @@
 		},
 		{
 			"Name": "PicoNeoController",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "PicoMobileController",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "PicoMobile",
-			"Enabled": true
+			"Enabled": false
 		},
 		{
 			"Name": "OculusVR",
