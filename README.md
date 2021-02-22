@@ -22,10 +22,8 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Android Movement - Fix rotation for HMD movement
-- Android Fix name tag
-- Android leave game not working - event end play not handle
-- Android player not spawned when entering new map - standard PC character
+- Android Movement - Fix rotation for HMD movement - TB SORTING
+- PC VIVOX NOT WORKING - MAY NEED APPROPRIATE SDK
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
@@ -39,7 +37,7 @@ If you experience build errors, follow the steps below:
 5.Re-open Unreal
 
 ## Future Developments
-- Step Count
+- Awaiting Bug Fix No.6411 - issue relates to OnClick of the UI. Tracking here : https://issues.unrealengine.com/issue/UE-6411
 - Android Volume Needs Increasing - vivox positional values for volume close and drop off after
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
