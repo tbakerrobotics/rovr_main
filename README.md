@@ -37,7 +37,7 @@ If you experience build errors, follow the steps below:
 5.Re-open Unreal
 
 ## Future Developments
-- Awaiting Bug Fix No.6411 - issue relates to OnClick of the UI. Tracking here : https://issues.unrealengine.com/issue/UE-6411
+- Awaiting Bug Fix No.6411 - issue relates to OnClick of the UI. Tracking here : https://issues.unrealengine.com/issue/UE-6411 (https://answers.unrealengine.com/questions/142589/view.html)
 - Android Volume Needs Increasing - vivox positional values for volume close and drop off after
 - Move vivox tokens over to production ready solutionw
 - Allow users to upload own images
