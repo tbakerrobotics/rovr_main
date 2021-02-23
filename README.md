@@ -25,6 +25,8 @@ Jamie Pierce & Thomas Baker \
 - Android Movement - Fix rotation for HMD movement - TB SORTING
 - PC VIVOX NOT WORKING - MAY NEED APPROPRIATE SDK
 - VR Spawn Crashing - leaving lobby or joining gameplay 
+- Backspace on VR keyboard deleting two characters when the button is pressed once
+- Nametag in gameplay not working
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
