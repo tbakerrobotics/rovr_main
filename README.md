@@ -22,6 +22,13 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
+- Camera height issue
+- Intermittant Vivox
+- Test Positional Vivox
+- Add option for no audio on local sessions only
+- Add map content 
+
+START ON PLAYFAB - YEAH BABY!!
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
