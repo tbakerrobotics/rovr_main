@@ -27,6 +27,7 @@ Jamie Pierce & Thomas Baker \
 - Test Positional Vivox
 - Add option for no audio on local sessions only
 - Add map content 
+- PC Spawning issue 
 
 START ON PLAYFAB - YEAH BABY!!
 
