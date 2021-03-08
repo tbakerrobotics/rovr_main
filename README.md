@@ -27,11 +27,10 @@ Jamie Pierce & Thomas Baker \
 ## Known Bugs/Fixes Required
 - Intermittant Vivox
 - Test Positional Vivox
+- Make sure no audio functions
 
-- Add option for no audio on local sessions only
-- Change image selection to automatic VR/PC Icon
 - Add map content 
-- Mesh to stay with camera - to avoid mesh blocking widget interaction and player being out of the skeleton
+
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
@@ -45,6 +44,7 @@ If you experience build errors, follow the steps below:
 5.Re-open Unreal
 
 ## Future Developments
+- Mesh to stay with camera - to avoid mesh blocking widget interaction and player being out of the skeleton
 - Awaiting Bug Fix No.6411 - issue relates to OnClick of the UI. Tracking here : https://issues.unrealengine.com/issue/UE-6411 (https://answers.unrealengine.com/questions/142589/view.html)
 - Android Volume Needs Increasing - vivox positional values for volume close and drop off after
 - Move vivox tokens over to production ready solutionw
