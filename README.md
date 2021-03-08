@@ -26,10 +26,9 @@ Jamie Pierce & Thomas Baker \
 - Intermittant Vivox
 - Test Positional Vivox
 - Add option for no audio on local sessions only
+- Destination map change - lobby UI
+- Change image selection to automatic VR/PC Icon
 - Add map content 
-- PC Spawning issue 
-
-START ON PLAYFAB - YEAH BABY!!
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
