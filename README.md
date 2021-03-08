@@ -26,7 +26,6 @@ Jamie Pierce & Thomas Baker \
 - Intermittant Vivox
 - Test Positional Vivox
 - Add option for no audio on local sessions only
-- Destination map change - lobby UI
 - Change image selection to automatic VR/PC Icon
 - Add map content 
 
