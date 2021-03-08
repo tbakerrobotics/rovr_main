@@ -9,6 +9,9 @@ The social VR platform allows geographically distanced groups to meet in VR. The
 
 The Social Platform functions on both PC & Android (Pico Neo 2). 
 
+### Setup Instructions
+- Make sure the floor level is correct - this may require manually setting. 
+
 ### SDK Information 
 Unreal Version : 4.25.3\
 Vivox SDK Version : 5.13.0.unr.1\
@@ -22,13 +25,13 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Camera height issue
 - Intermittant Vivox
 - Test Positional Vivox
+
 - Add option for no audio on local sessions only
-- Destination map change - lobby UI
 - Change image selection to automatic VR/PC Icon
 - Add map content 
+- Mesh to stay with camera - to avoid mesh blocking widget interaction and player being out of the skeleton
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
