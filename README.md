@@ -25,12 +25,8 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Intermittant Vivox
-- Test Positional Vivox
-- Make sure no audio functions
-
+- Vivox Issues
 - Add map content 
-
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
