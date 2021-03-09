@@ -1,6 +1,6 @@
 <img src="ROVR_LOGO.png" width="250" />
 
-# ROVR Social VR Platform
+# ROVR Revitalise Social VR Platform
 
 ## Overview
 ![Socal VR Platform](ROVR_IMAGE.png)
