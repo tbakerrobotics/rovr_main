@@ -29,6 +29,11 @@ Jamie Pierce & Thomas Baker \
 - Vivox Positional Audio
 - Add map content 
 
+## Map Directory -
+
+All maps are not saved to this repository, they can be found at the link below and should be loaded into the Content/Maps folder.
+https://www.dropbox.com/sh/cgh18cymasrrs01/AABBoPfnFVLZDhnIslS1ENOVa?dl=0
+
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
 
