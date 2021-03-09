@@ -33,7 +33,7 @@ https://www.dropbox.com/sh/cgh18cymasrrs01/AABBoPfnFVLZDhnIslS1ENOVa?dl=0
 
 When creating new map content, please create this in an independent project in the structure shown below keeping all assetts etc in the relative map folder - this alllows for easy migration onto the social platform. Please also make sure that the maps are full optimised for android and the Pico Neo2. 
 
-![Socal VR Platform](ROVR_IMAGE.png)
+![Example Model Structure](MODEL_GRAPH.png)
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
