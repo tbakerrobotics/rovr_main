@@ -25,7 +25,8 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Vivox Issues
+- Vivox Discconect Issue
+- Vivox Positional Audio
 - Add map content 
 
 ## Additional Information
