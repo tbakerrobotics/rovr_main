@@ -44,6 +44,7 @@ If you experience build errors, follow the steps below:
 - Mesh to stay with camera - to avoid mesh blocking widget interaction and player being out of the skeleton
 - Awaiting Bug Fix No.6411 - issue relates to OnClick of the UI. Tracking here : https://issues.unrealengine.com/issue/UE-6411 (https://answers.unrealengine.com/questions/142589/view.html)
 - Android Volume Needs Increasing - vivox positional values for volume close and drop off after
-- Move vivox tokens over to production ready solutionw
+- Move vivox tokens over to production ready solution
 - Allow users to upload own images
 - PlayFab , Gamespark , AWS, Improbable IO - GameSparks for easy account creation/handling, cloud code, currency management, analytics, etc.)
+- Allow users to select map folder from inside the application. For example, if a new map was released, they could download it and simply select the folder and the application would install the map for them.
