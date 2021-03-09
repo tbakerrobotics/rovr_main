@@ -285,6 +285,8 @@ void UrovrGameInstance::BindChannelSessionHandlers(bool DoBind, IChannelSession&
 		ChannelSession.EventAfterParticipantAdded.AddUObject(this, &UrovrGameInstance::OnChannelParticipantAdded);
 		ChannelSession.EventBeforeParticipantRemoved.AddUObject(this, &UrovrGameInstance::OnChannelParticipantRemoved);
 		ChannelSession.EventAfterParticipantUpdated.AddUObject(this, &UrovrGameInstance::OnChannelParticipantUpdated);
+		ChannelSession.EventChannelStateChanged.AddUObject(this, &UrovrGameInstance::OnChannelSessionConnectionStateChanged);
+
 	}
 	else
 	{
