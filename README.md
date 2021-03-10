@@ -1,16 +1,16 @@
 <img src="ROVR_LOGO.png" width="250" />
 
-# ROVR Social VR Platform
+# ROVR Revitalise Social VR Platform
 
 ## Overview
 ![Socal VR Platform](ROVR_IMAGE.png)
 
-The social VR platform allows geographically distanced groups to meet in VR. The system is developed in Unreal Engine using the OnlineSubSystem peer to peer network functionality, which requires a known IP address for the host and related network settings (usually port forwarding and remove of firewall). Users are able to interate verbally through Vivox voice services - both direction audio and posional audio and enabled within this platform.
+The social VR platform allows geographically distanced groups to meet in VR. The system is developed in Unreal Engine using the OnlineSubSystem peer to peer network functionality, which requires a known IP address for the host and related network settings (usually port forwarding and remove of firewall). Users are able to interact verbally through Vivox voice services - both direction audio and posional audio and enabled within this platform.
 
 The Social Platform functions on both PC & Android (Pico Neo 2). 
 
 ### Setup Instructions
-- Make sure the floor level is correct - this may require manually setting. 
+- Make sure the floor level is correct within the Pico settings - this may require manually setting. 
 
 ### SDK Information 
 Unreal Version : 4.25.3\
@@ -25,14 +25,15 @@ Jamie Pierce & Thomas Baker \
 © Copyright Wizdish Ltd 2021
 
 ## Known Bugs/Fixes Required
-- Vivox Discconect Issue
 - Vivox Positional Audio
-- Add map content 
 
-## Map Directory -
-
+## Map Directory
 All maps are not saved to this repository, they can be found at the link below and should be loaded into the Content/Maps folder.
 https://www.dropbox.com/sh/cgh18cymasrrs01/AABBoPfnFVLZDhnIslS1ENOVa?dl=0
+
+When creating new map content, please create this in an independent project in the structure shown below keeping all assetts etc in the relative map folder - this alllows for easy migration onto the social platform. Please also make sure that the maps are full optimised for android and the Pico Neo2. 
+
+![Example Model Structure](MODEL_GRAPH.png)
 
 ## Additional Information
 This repository does not include the Vivox Plugin requried for audio communication. Please ensure you copy a version of this into the Plugins folder before building. If building for PC ensure that the Pico SDK elements are not enabled in the Plugins window.
