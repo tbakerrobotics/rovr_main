@@ -27,7 +27,7 @@ Jamie Pierce & Thomas Baker \
 ## Known Bugs/Fixes Required
 - Vivox Positional Audio
 - 3 people - one player doesn't possess pawn properly
-- Host leaving session doesn't remove everyone from the game
+- Host leaving session doesn't remove everyone from the game (noticed while 3 headsets were connected. It removed PC version later with 1 PC and 1 headset)
 - Client leaving session didn't remove player fully / maybe just spawned the Main Menu behind
 - Maybe a force reset button for the host
 - Clean install, options menu doesn't have laser pointer. Maybe doesn't spawn the Android character yet?
