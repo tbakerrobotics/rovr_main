@@ -26,6 +26,10 @@ Jamie Pierce & Thomas Baker \
 
 ## Known Bugs/Fixes Required
 - Vivox Positional Audio
+- 3 people - one player doesn't possess pawn properly
+- Host leaving session doesn't remove everyone from the game
+- Client leaving session didn't remove player fully / maybe just spawned the Main Menu behind
+- Maybe a force reset button for the host
 
 ## Map Directory
 All maps are not saved to this repository, they can be found at the link below and should be loaded into the Content/Maps folder.
