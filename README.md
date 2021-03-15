@@ -26,15 +26,10 @@ Jamie Pierce & Thomas Baker \
 
 ## Known Bugs/Fixes Required
 - Vivox Positional Audio
-- 3 people - one player doesn't possess pawn properly
-- Host leaving session doesn't remove everyone from the game (noticed while 3 headsets were connected. It removed PC version later with 1 PC and 1 headset)
-- Client leaving session didn't remove player fully / maybe just spawned the Main Menu behind
 - Maybe a force reset button for the host
-- Clean install, options menu doesn't have laser pointer. Maybe doesn't spawn the Android character yet?
-- VR character change - Toggle Ready button doesn;t update with player ready status
 
 ## Map Directory
-All maps are not saved to this repository, they can be found at the link below and should be loaded into the Content/Maps folder.
+All maps are not saved to this repository, they can be found at the link below and should be loaded into the "Content/Maps" folder.
 https://www.dropbox.com/sh/cgh18cymasrrs01/AABBoPfnFVLZDhnIslS1ENOVa?dl=0
 
 When creating new map content, please create this in an independent project in the structure shown below keeping all assetts etc in the relative map folder - this alllows for easy migration onto the social platform. Please also make sure that the maps are full optimised for android and the Pico Neo2. 
