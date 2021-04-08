@@ -20,15 +20,15 @@
 		},
 		{
 			"Name": "PicoNeoController",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "PicoMobileController",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "PicoMobile",
-			"Enabled": false
+			"Enabled": true
 		},
 		{
 			"Name": "OculusVR",
@@ -45,7 +45,7 @@
 		},
 		{
 			"Name": "PlayFab",
-			"Enabled": true,
+			"Enabled": false,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/217fdf581b784571af03d3fb6580368f"
 		}
 	]
