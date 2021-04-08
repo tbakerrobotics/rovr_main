@@ -1,6 +1,6 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.25",
+	"EngineAssociation": "4.26",
 	"Category": "",
 	"Description": "",
 	"Modules": [
@@ -47,6 +47,10 @@
 			"Name": "PlayFab",
 			"Enabled": true,
 			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/217fdf581b784571af03d3fb6580368f"
+		},
+		{
+			"Name": "OnlineSubsystemPico",
+			"Enabled": false
 		}
 	]
 }

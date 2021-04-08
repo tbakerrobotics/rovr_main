@@ -52,10 +52,7 @@ Plugins/*/Binaries/*
 Build/*
 
 #Plugins
-Plugins/VivoxCoreUE4Plugin/*
-Plugins/PicoNeoController/*
-Plugins/PicoMobileController/*
-Plugins/PicoMobile/*
+Plugins/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
@@ -80,3 +77,4 @@ DerivedDataCache/*
 
 # Maps
 Content/Maps/BomJesusDeMonte/*
+Content/Maps/MakerHeights/*
