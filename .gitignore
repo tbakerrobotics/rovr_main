@@ -56,7 +56,7 @@ Plugins/VivoxCoreUE4Plugin/*
 Plugins/PicoNeoController/*
 Plugins/PicoMobileController/*
 Plugins/PicoMobile/*
-Plugins/PlayFabSDK/*
+Plugins/OnlineSubsystemPico/*
 
 # Whitelist PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
