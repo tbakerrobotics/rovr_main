@@ -54,3 +54,6 @@ If you experience build errors, follow the steps below:
 - Allow users to upload own images
 - PlayFab , Gamespark , AWS, Improbable IO - GameSparks for easy account creation/handling, cloud code, currency management, analytics, etc.)
 - Allow users to select map folder from inside the application. For example, if a new map was released, they could download it and simply select the folder and the application would install the map for them.
+
+Photon Intergration Notes:
+- Tick every half second to update location
