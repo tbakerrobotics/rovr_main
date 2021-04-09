@@ -13,9 +13,9 @@ The Social Platform functions on both PC & Android (Pico Neo 2).
 - Make sure the floor level is correct within the Pico settings - this may require manually setting. 
 
 ### SDK Information 
-Unreal Version : 4.25.3\
+Unreal Version : 4.26.1\
 Vivox SDK Version : 5.13.0.unr.1\
-Pico SDK Version : v1.2.3
+Pico SDK Version : v1.2.5
 
 ## Features
 To follow .....
