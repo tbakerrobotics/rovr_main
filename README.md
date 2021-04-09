@@ -14,7 +14,7 @@ The Social Platform functions on both PC & Android (Pico Neo 2).
 
 ### SDK Information 
 Unreal Version : 4.26.1\
-Vivox SDK Version : 5.13.0.unr.1\
+Vivox SDK Version : 5.14.1.unr.0\
 Pico SDK Version : v1.2.5
 
 ## Features
