@@ -26,6 +26,7 @@ Jamie Pierce & Thomas Baker \
 
 ## Known Bugs/Fixes Required
 - Vivox Positional Audio
+- Vivox Crashing on Android when moving to map 
 
 ## Map Directory
 All maps are not saved to this repository, they can be found at the link below and should be loaded into the "Content/Maps" folder.
